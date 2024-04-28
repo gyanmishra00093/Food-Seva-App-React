@@ -2,7 +2,7 @@
 import { useSelector } from "react-redux";
 import FoodItems from "./FoodItems";
 import {useDispatch} from "react-redux";
-import {clearCart} from "../utils/cartSlice"
+import {clearCart,removeItem} from "../utils/cartSlice"
 
 const Cart=()=>{
     const cartItems=useSelector(store=>store.cart.items);
@@ -10,15 +10,16 @@ const Cart=()=>{
     const dispatch=useDispatch();
     const handleClearCart=()=>{
         dispatch(clearCart());
+    };
+    const handleremoveItems=()=>{
+        dispatch(removeItem());
     }
    
     return (
         <div>
             <h1 className="font-bold">Total Cart Items : {cartItems.length}</h1>
-            <br />
             <button className="p-1 m-2 bg-green-100" onClick={()=>handleClearCart()}>Clear-Cart</button>
-            <br />
-            {/* <h2 className="font-bold">Cart Items{cartItems[0]?.card?.info?.id}</h2>  */}
+            <button className="p-1 m-2 bg-green-100" onClick={()=>handleremoveItems()}>Remove-Items</button>
             <br />
             <div className="flex flex-wrap ml-10">
             {
